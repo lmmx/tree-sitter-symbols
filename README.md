@@ -5,7 +5,7 @@
 [![MIT/Apache-2.0 licensed](https://img.shields.io/crates/l/tree-sitter-rust.svg)](./LICENSE)
 [![pre-commit.ci status](https://results.pre-commit.ci/badge/github/lmmx/tree-sitter-rust/master.svg)](https://results.pre-commit.ci/latest/github/lmmx/tree-sitter-rust/master)
 
-Tree-sitter symbol metadata and type-safe node enums, generated at build time.
+Tree-sitter symbol node enums and metadata, generated at build time.
 
 ## Overview
 
