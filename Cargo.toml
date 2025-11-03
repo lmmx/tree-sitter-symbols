@@ -1,0 +1,40 @@
+[workspace.dependencies]
+# Internal crates
+tss = { path = "crates/tss", version = "0.1.0" }
+tss-rust = { path = "crates/tss-rust", version = "0.1.0" }
+
+serde = { features = ["derive"], version = "1.0" }
+serde_json = { version = "1.0" }
+tree-sitter-rust = { version = "0.24.0" }
+
+[workspace]
+members = ["crates/*"]
+resolver = "2"
+
+[workspace.package]
+authors = ["Louis Maddox <louismmx@gmail.com>"]
+description = "Generated node type enums and metadata from tree-sitter language crates"
+# documentation = "https://docs.rs/tss/"
+edition = "2021"
+homepage = "https://github.com/lmmx/tss"
+keywords = ["ast", "codegen", "syntax", "tree-sitter"]
+license = "MIT"
+# name = "tss"
+readme = "README.md"
+repository = "https://github.com/lmmx/tss"
+rust-version = "1.90"
+version = "0.0.1"
+
+[profile.dev]
+codegen-units = 256
+debug = false
+lto = false
+opt-level = 0
+strip = "debuginfo"
+
+[profile.release]
+codegen-units = 1
+debug = false
+lto = "thin"
+opt-level = 2
+strip = "symbols"

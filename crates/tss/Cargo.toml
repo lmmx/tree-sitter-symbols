@@ -1,0 +1,37 @@
+[dependencies]
+tss-rust = { features = ["meta-full"], optional = true, workspace = true }
+
+[package]
+authors.workspace = true
+categories = ["development-tools", "parser-implementations"]
+description = "Generated node type enums and metadata from tree-sitter languages"
+documentation = "https://docs.rs/tss/"
+edition.workspace = true
+homepage.workspace = true
+keywords = ["ast", "codegen", "parser", "tree-sitter"]
+license.workspace = true
+name = "tss"
+readme = "README.md"
+repository.workspace = true
+version = "0.1.0"
+
+[lib]
+name = "tree_sitter_symbols"
+path = "src/lib.rs"
+
+[features]
+# Convenience features
+default = ["lang-all"]
+lang-all = ["lang-rust"]
+
+# Language features
+lang-rust = ["dep:tss-rust"]
+
+[lints.clippy]
+all = "deny"
+cargo = "deny"
+pedantic = "deny"
+
+[lints.rust]
+unsafe_code = "forbid"
+# missing_docs = "deny"
