@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [0.1.1](https://github.com/lmmx/tree-sitter-symbols/compare/tss-rust-v0.1.0...tss-rust-v0.1.1) - 2025-11-03
+## [0.1.2](https://github.com/lmmx/tree-sitter-symbols/compare/tss-rust-v0.1.0...tss-rust-v0.1.2) - 2025-11-03
 
 ### <!-- 4 -->Documentation
 
