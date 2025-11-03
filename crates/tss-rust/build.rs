@@ -1,3 +1,5 @@
+#![allow(clippy::too_many_lines)]
+#![allow(clippy::match_same_arms)]
 use std::env;
 use std::fs::File;
 use std::path::Path;

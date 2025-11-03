@@ -9,8 +9,9 @@ pub struct NodeType {
     pub named: bool,
     pub root: Option<bool>,
     pub subtypes: Option<Vec<Subtype>>,
+    #[allow(clippy::struct_field_names)]
     #[serde(rename = "type")]
-    pub node_type_type: String,
+    pub node_type_name: String,
 }
 
 #[derive(Serialize, Deserialize)]
@@ -24,7 +25,7 @@ pub struct Children {
 pub struct ChildrenType {
     pub named: bool,
     #[serde(rename = "type")]
-    pub type_type: String,
+    pub child_type_name: String,
 }
 
 #[derive(Serialize, Deserialize)]
@@ -38,12 +39,12 @@ pub struct Field {
 pub struct FieldType {
     pub named: bool,
     #[serde(rename = "type")]
-    pub type_type: String,
+    pub field_type_name: String,
 }
 
 #[derive(Serialize, Deserialize)]
 pub struct Subtype {
     pub named: bool,
     #[serde(rename = "type")]
-    pub subtype_type: String,
+    pub subchild_type_name: String,
 }

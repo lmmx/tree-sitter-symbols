@@ -24,7 +24,7 @@ fn build_variant_map(node_types: &[NodeType]) -> Vec<(String, String)> {
     let mut result = Vec::new();
 
     for node_type in node_types {
-        let original = &node_type.node_type_type;
+        let original = &node_type.node_type_name;
         let mut base_variant = to_pascal_case(original);
 
         // Add suffix for unnamed nodes to distinguish them
@@ -117,6 +117,8 @@ fn generate_from_str<W: Write>(
     writeln!(f, "impl std::str::FromStr for NodeType {{")?;
     writeln!(f, "    type Err = String;")?;
     writeln!(f)?;
+
+    writeln!(f, "    #[allow(clippy::too_many_lines)]")?;
     writeln!(f, "    fn from_str(s: &str) -> Result<Self, Self::Err> {{")?;
     writeln!(f, "        match s {{")?;
 
@@ -129,7 +131,7 @@ fn generate_from_str<W: Write>(
 
     writeln!(
         f,
-        "            _ => Err(format!(\"Unknown node type: {{}}\", s)),"
+        "            _ => Err(format!(\"Unknown node type: {{s}}\")),"
     )?;
     writeln!(f, "        }}")?;
     writeln!(f, "    }}")?;
@@ -140,6 +142,8 @@ fn generate_from_str<W: Write>(
 
 fn generate_display<W: Write>(f: &mut W, variant_map: &[(String, String)]) -> io::Result<()> {
     writeln!(f, "impl std::fmt::Display for NodeType {{")?;
+    writeln!(f, "    #[allow(clippy::match_same_arms)]")?;
+    writeln!(f, "    #[allow(clippy::too_many_lines)]")?;
     writeln!(
         f,
         "    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {{"
@@ -151,7 +155,7 @@ fn generate_display<W: Write>(f: &mut W, variant_map: &[(String, String)]) -> io
     }
 
     writeln!(f, "        }};")?;
-    writeln!(f, "        write!(f, \"{{}}\", s)")?;
+    writeln!(f, "        write!(f, \"{{s}}\")")?;
     writeln!(f, "    }}")?;
     writeln!(f, "}}")?;
     Ok(())

@@ -1,3 +1,4 @@
+#[allow(clippy::too_many_lines)]
 pub fn to_pascal_case(s: &str) -> String {
     // Handle special characters and operators
     match s {
