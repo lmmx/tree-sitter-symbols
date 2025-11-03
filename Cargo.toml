@@ -1,7 +1,7 @@
 [workspace.dependencies]
 # Internal crates
-tss = { path = "crates/tss", version = "0.1.0" }
-tss-rust = { path = "crates/tss-rust", version = "0.1.0" }
+tss = { path = "crates/tss", version = "0.1.1" }
+tss-rust = { path = "crates/tss-rust", version = "0.1.1" }
 
 serde = { features = ["derive"], version = "1.0" }
 serde_json = { version = "1.0" }
