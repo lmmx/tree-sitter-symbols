@@ -46,13 +46,16 @@ Available metadata features:
 
 ## How It Works
 
-At build time, reads `tree-sitter-rust`'s `NODE_TYPES` constant and generates:
-- A `NodeType` enum with all 280+ node types
+At build time, each language reads the corresponding `tree-sitter-*` language crate's `NODE_TYPES` constant and generates:
+
+- A `NodeType` enum with all 280 node types
 - `FromStr` for parsing node type strings
 - `Display` for converting back to strings
-- Documentation linking to Rust language reference
+- Documentation linking to language reference (best effort, not comprehensive)
 
-Zero runtime dependencies - all generation happens at compile time.
+This allows a crate to ship this information as an enum type with zero runtime dependencies. All generation happens at compile time.
+This is useful for type safety (rather than checking for strings, as well as hopefully to demystify how tree-sitter languages work.
+
 
 ## Licensing
 

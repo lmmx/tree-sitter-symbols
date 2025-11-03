@@ -1,6 +1,6 @@
 #![cfg(feature = "lang-rust")]
 use std::str::FromStr;
-use tree_sitter_symbols_rust::NodeType;
+use tree_sitter_symbols::NodeTypeRust as NodeType;
 
 #[test]
 fn enum_variants_exist() {
