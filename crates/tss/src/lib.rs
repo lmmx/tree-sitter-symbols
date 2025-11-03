@@ -5,6 +5,7 @@ pub use tree_sitter_symbols_rust::NodeType as NodeTypeRust;
 
 #[cfg(test)]
 mod tests {
+    #[cfg(feature = "lang-rust")]
     use super::*;
 
     #[cfg(feature = "lang-rust")]

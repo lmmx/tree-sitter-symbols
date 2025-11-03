@@ -1,3 +1,4 @@
+#![cfg(feature = "lang-rust")]
 use std::str::FromStr;
 use tree_sitter_symbols_rust::NodeType;
 
