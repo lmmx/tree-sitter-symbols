@@ -1,3 +1,6 @@
+#![allow(clippy::negative_feature_names)]
+#![allow(clippy::redundant_feature_names)]
+
 #[test]
 fn module_exists() {
     #[allow(unused_imports)]
