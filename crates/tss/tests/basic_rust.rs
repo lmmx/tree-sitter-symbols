@@ -1,9 +1,16 @@
 #![allow(clippy::negative_feature_names)]
 #![allow(clippy::redundant_feature_names)]
+#![cfg(feature = "lang-rust")]
 
-// Effectively lang-rust-full test because cannot do much without a node
-#[allow(unused_imports)]
 use tree_sitter_symbols::NodeTypeRust as NodeType;
+
+// Check that a node type type exists (empty if no node features are on)
+// You cannot do much without any node types
+#[test]
+fn enum_exists() {
+    // This prints the type name at runtime
+    println!("{}", std::any::type_name::<NodeType>());
+}
 
 #[cfg(feature = "lang-rust-full")]
 #[test]
