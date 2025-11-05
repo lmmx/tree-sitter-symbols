@@ -1,6 +1,16 @@
 #![allow(clippy::negative_feature_names)]
 #![allow(clippy::redundant_feature_names)]
 
+// Check that a node type type exists (empty if no node features are on)
+// You cannot do much without any node types
+#[test]
+fn enum_exists() {
+    use tree_sitter_symbols_rust::NodeType;
+
+    // This prints the type name at runtime
+    println!("{}", std::any::type_name::<NodeType>());
+}
+
 #[cfg(any(
     feature = "function_item",
     feature = "struct_item",
