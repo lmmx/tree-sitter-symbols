@@ -1,3 +1,5 @@
+#![allow(clippy::negative_feature_names)]
+#![allow(clippy::redundant_feature_names)]
 #![cfg(feature = "lang-rust")]
 use std::str::FromStr;
 use tree_sitter_symbols::NodeTypeRust as NodeType;
