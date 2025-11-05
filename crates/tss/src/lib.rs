@@ -1,3 +1,5 @@
+#![allow(clippy::negative_feature_names)]
+#![allow(clippy::redundant_feature_names)]
 #[cfg(feature = "lang-rust")]
 pub use tree_sitter_symbols_rust;
 #[cfg(feature = "lang-rust")]
