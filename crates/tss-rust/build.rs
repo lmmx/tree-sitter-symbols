@@ -1,3 +1,9 @@
+//! Build script for generating tree-sitter node type enums and updating Cargo.toml features.
+//!
+//! This build script reads the `NODE_TYPES` constant from `tree-sitter-rust` and generates
+//! Rust code for the `NodeType` enum with feature-gated variants. When the `REWRITE_FEATURES`
+//! environment variable is set, it also updates the `Cargo.toml` with generated feature names.
+
 #![allow(clippy::too_many_lines)]
 #![allow(clippy::match_same_arms)]
 #![allow(clippy::negative_feature_names)]
