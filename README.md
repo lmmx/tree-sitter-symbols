@@ -1,9 +1,11 @@
 # tree-sitter-symbols
 
-[![crates.io](https://img.shields.io/crates/v/tss.svg)](https://crates.io/crates/tss)
-[![documentation](https://docs.rs/tss/badge.svg)](https://docs.rs/tss)
+[![crates.io](https://img.shields.io/crates/v/tss?label=tss)](https://crates.io/crates/tss)
+[![crates.io](https://img.shields.io/crates/v/tss-rust?label=tss-rust)](https://crates.io/crates/tss-rust)
+[![documentation](https://img.shields.io/docsrs/tss?label=docs%3A%20tss)](https://docs.rs/tss)
+[![documentation](https://img.shields.io/docsrs/tss-rust?label=docs%3A%20tss-rust)](https://docs.rs/tss-rust)
 [![MIT/Apache-2.0 licensed](https://img.shields.io/crates/l/tss.svg)](./LICENSE)
-[![pre-commit.ci status](https://results.pre-commit.ci/badge/github/lmmx/tss/master.svg)](https://results.pre-commit.ci/latest/github/lmmx/tss/master)
+[![pre-commit.ci status](https://results.pre-commit.ci/badge/github/lmmx/tree-sitter-symbols/master.svg)](https://results.pre-commit.ci/latest/github/lmmx/tree-sitter-symbols/master)
 
 Tree-sitter symbol node enums and metadata, generated at build time.
 
