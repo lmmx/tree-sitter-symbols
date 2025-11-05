@@ -103,7 +103,7 @@
 //!
 //! - A `NodeType` enum with variants for all 280+ node types
 //! - `FromStr` implementation for parsing node type strings
-//! - `Display` implementation for converting back to strings  
+//! - `Display` implementation for converting back to strings
 //! - Documentation linking to Rust language reference where applicable
 //! - Feature-gated compilation so you only pay for what you use
 //!

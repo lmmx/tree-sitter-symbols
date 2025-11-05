@@ -52,7 +52,7 @@
 //! # All languages with metadata only (currently just Rust)
 //! tss = { version = "0.2", features = ["lang-all"] }
 //!
-//! # All languages with full node types (currently just Rust)  
+//! # All languages with full node types (currently just Rust)
 //! tss = { version = "0.2", features = ["lang-all-full"] }
 //! ```
 //!
@@ -71,7 +71,7 @@
 //! tss = { version = "0.2", features = ["lang-rust"] }
 //! ```
 //!
-//! ### `lang-{name}-full` - Complete Functionality  
+//! ### `lang-{name}-full` - Complete Functionality
 //!
 //! Enables the language crate with the `full` feature, which includes both `meta_full` and
 //! `node_full`. This gives you all node types and all metadata - complete functionality.
