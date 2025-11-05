@@ -1,3 +1,5 @@
+#![allow(clippy::negative_feature_names)]
+#![allow(clippy::redundant_feature_names)]
 use std::str::FromStr;
 use tree_sitter_symbols_rust::NodeType;
 

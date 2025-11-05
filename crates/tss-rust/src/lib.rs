@@ -1,3 +1,5 @@
+#![allow(clippy::negative_feature_names)]
+#![allow(clippy::redundant_feature_names)]
 include!(concat!(env!("OUT_DIR"), "/generated.rs"));
 
 #[cfg(test)]
