@@ -21,7 +21,7 @@ path = "src/lib.rs"
 
 [features]
 # Convenience features
-default = ["lang-all"]
+default = []
 lang-all = ["lang-rust"]
 lang-all-full = ["lang-rust-full"]
 
