@@ -33,16 +33,16 @@ tss-rust = "0.1"
 
 Select specific metadata:
 ```toml
-tss-rust = { version = "0.1", default-features = false, features = ["meta-named", "meta-fields"] }
+tss-rust = { version = "0.1", default-features = false, features = ["meta_named", "meta_fields"] }
 ```
 
 Available metadata features:
-- `meta-named` - whether nodes are named in the grammar
-- `meta-subtypes` - possible subtypes for each node
-- `meta-fields` - named fields nodes can have
-- `meta-children` - anonymous children nodes can have
-- `meta-extra` - extra node markers
-- `meta-root` - root node markers
+- `meta_named` - whether nodes are named in the grammar
+- `meta_subtypes` - possible subtypes for each node
+- `meta_fields` - named fields nodes can have
+- `meta_children` - anonymous children nodes can have
+- `meta_extra` - extra node markers
+- `meta_root` - root node markers
 
 ## How It Works
 

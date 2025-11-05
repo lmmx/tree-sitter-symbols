@@ -1,5 +1,5 @@
 [dependencies]
-tss-rust = { features = ["meta-full"], optional = true, workspace = true }
+tss-rust = { features = ["meta_full"], optional = true, workspace = true }
 
 [package]
 authors.workspace = true

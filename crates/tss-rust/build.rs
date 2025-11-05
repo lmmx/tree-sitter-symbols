@@ -1,5 +1,7 @@
 #![allow(clippy::too_many_lines)]
 #![allow(clippy::match_same_arms)]
+#![allow(clippy::negative_feature_names)]
+#![allow(clippy::redundant_feature_names)]
 use std::env;
 use std::fs::File;
 use std::path::Path;

@@ -66,9 +66,6 @@ pub fn generate<W: Write>(f: &mut W) -> io::Result<Vec<String>> {
         ));
     }
 
-    // Add the global feature as the first feature
-    features.insert(0, "all-node-types".to_string());
-
     Ok(features)
 }
 
@@ -156,7 +153,7 @@ fn generate_enum<W: Write>(
         // Gate the variant itself on its feature or the global one
         writeln!(
             f,
-            "    #[cfg(any(feature = \"{feat}\", feature = \"all-node-types\"))]"
+            "    #[cfg(any(feature = \"{feat}\", feature = \"all_node_types\"))]"
         )?;
         writeln!(f, "    {variant_name},")?;
     }
@@ -177,7 +174,7 @@ fn generate_from_str<W: Write>(
         let feat = feature_name(original, node_types[i].named);
         all_feature_list.push(format!("feature = \"{feat}\""));
     }
-    all_feature_list.push("feature = \"all-node-types\"".to_string());
+    all_feature_list.push("feature = \"all_node_types\"".to_string());
     let any_cfg = format!("any({})", all_feature_list.join(", "));
 
     // gate the whole impl
@@ -194,7 +191,7 @@ fn generate_from_str<W: Write>(
             let feat = feature_name(original, node_types[i].named);
             writeln!(
                 f,
-                "            #[cfg(any(feature = \"{feat}\", feature = \"all-node-types\"))]"
+                "            #[cfg(any(feature = \"{feat}\", feature = \"all_node_types\"))]"
             )?;
             writeln!(f, "            {original:?} => Ok(Self::{variant_name}),")?;
         }
@@ -223,7 +220,7 @@ fn generate_display<W: Write>(
         let feat_name = feature_name(original, named);
         feats.push(format!("feature = \"{feat_name}\""));
     }
-    feats.push("feature = \"all-node-types\"".to_string());
+    feats.push("feature = \"all_node_types\"".to_string());
     let any_cfg = format!("any({})", feats.join(", "));
 
     writeln!(f, "#[cfg({any_cfg})]")?;
@@ -242,11 +239,13 @@ fn generate_display<W: Write>(
 
         writeln!(
             f,
-            "            #[cfg(any(feature = \"{feat_name}\", feature = \"all-node-types\"))]"
+            "            #[cfg(any(feature = \"{feat_name}\", feature = \"all_node_types\"))]"
         )?;
         writeln!(
             f,
-            "            Self::{variant_name} => write!(f, {original:?}),"
+            "            Self::{} => write!(f, \"{}\"),",
+            variant_name,
+            original.replace('{', "{{").replace('}', "}}")
         )?;
     }
 
