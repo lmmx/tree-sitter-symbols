@@ -3,8 +3,10 @@
 tss = { path = "crates/tss", version = "0.1.2" }
 tss-rust = { path = "crates/tss-rust", version = "0.1.2" }
 
+ropey = { version = "1.6" }
 serde = { features = ["derive"], version = "1.0" }
 serde_json = { version = "1.0" }
+textum = { version = "0.1.1" }
 tree-sitter-rust = { version = "0.24.0" }
 
 [workspace]

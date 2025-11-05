@@ -45,11 +45,13 @@ meta-subtypes = []
 # <!-- generated-features-end -->
 
 [package.metadata.cargo-machete]
-ignored = ["serde", "serde_json", "tree-sitter-rust"]
+ignored = ["ropey", "serde", "serde_json", "textum", "tree-sitter-rust"]
 
 [build-dependencies]
+ropey.workspace = true
 serde.workspace = true
 serde_json.workspace = true
+textum.workspace = true
 tree-sitter-rust.workspace = true
 
 [lints.clippy]

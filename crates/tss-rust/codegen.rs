@@ -1,3 +1,4 @@
+pub mod feature_toml;
 pub mod generator;
 pub mod rust_docs;
 pub mod schema;

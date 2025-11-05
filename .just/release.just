@@ -37,10 +37,10 @@ ship version="auto":
         for crate in $crate_names; do
           version_strings+="$crate@{{version}} "
         done
-        
+
         # Trim the trailing whitespace
         version_strings=$(echo $version_strings | xargs)
-        
+
         # Execute the release-plz command
         release-plz set-version $version_strings
 

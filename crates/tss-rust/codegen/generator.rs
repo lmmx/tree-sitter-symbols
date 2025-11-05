@@ -38,19 +38,38 @@ fn alias_to_snake(alias: &str) -> String {
     s
 }
 
-pub fn generate<W: Write>(f: &mut W) -> io::Result<()> {
+pub fn generate<W: Write>(f: &mut W) -> io::Result<Vec<String>> {
     let node_types_json = tree_sitter_rust::NODE_TYPES;
     let node_types: Vec<NodeType> = serde_json::from_str(node_types_json)
         .map_err(|e| io::Error::new(io::ErrorKind::InvalidData, e))?;
 
-    // Build variant name mapping
     let variant_map = build_variant_map(&node_types);
 
     generate_enum(f, &node_types, &variant_map)?;
     generate_from_str(f, &node_types, &variant_map)?;
     generate_display(f, &node_types, &variant_map)?;
 
-    Ok(())
+    // Collect all feature names
+    let mut features = Vec::new();
+    for (i, (original, _)) in variant_map.iter().enumerate() {
+        let feat = feature_name(original, node_types[i].named);
+        features.push(feat);
+    }
+    features.sort();
+
+    let all_feats_count = features.len();
+    features.dedup();
+    if all_feats_count != features.len() {
+        return Err(io::Error::new(
+            io::ErrorKind::InvalidData,
+            "Duplicate feature names detected.",
+        ));
+    }
+
+    // Add the global feature as the first feature
+    features.insert(0, "all-node-types".to_string());
+
+    Ok(features)
 }
 
 fn build_variant_map(node_types: &[NodeType]) -> Vec<(String, String)> {
