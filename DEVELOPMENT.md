@@ -1,3 +1,7 @@
+## Feature rewriting
+
+To rebuild the features, run a cargo build with the env var `REWRITE_FEATURES=1`
+
 ## Prek/pre-commit
 
 Pre-commit tools bundle all the dependencies for CI and you can just run these and execute
