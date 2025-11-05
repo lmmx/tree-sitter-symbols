@@ -25,6 +25,9 @@
 //!
 //! # Features
 //!
+//! **By default, this crate has no features enabled.** You must explicitly enable the node types
+//! and metadata you need. This keeps compile times fast and binary sizes small.
+//!
 //! The crate uses Cargo features to control which node types and metadata are available:
 //!
 //! ## Node Type Features
@@ -32,7 +35,7 @@
 //! Each tree-sitter node type corresponds to a feature. Enable specific nodes:
 //!
 //! ```toml
-//! tss-rust = { version = "0.2", default-features = false, features = ["function_item", "struct_item"] }
+//! tss-rust = { version = "0.2", features = ["function_item", "struct_item"] }
 //! ```
 //!
 //! Or enable all node types at once:
@@ -42,6 +45,7 @@
 //! ```
 //!
 //! The `node` feature is a tracking feature automatically enabled when any node type is active.
+//! You don't need to enable it manually - it's used internally for conditional compilation.
 //!
 //! ## Metadata Features
 //!
@@ -63,19 +67,29 @@
 //! Or select specific metadata categories:
 //!
 //! ```toml
-//! tss-rust = { version = "0.2", default-features = false, features = ["meta_named", "meta_fields"] }
+//! tss-rust = { version = "0.2", features = ["meta_named", "meta_fields"] }
 //! ```
 //!
 //! The `meta` feature is a tracking feature automatically enabled when any metadata feature is active.
+//! You don't need to enable it manually - it's used internally for conditional compilation.
 //!
 //! ## Complete Feature Matrix
 //!
 //! ```toml
+//! # Default: empty - no features enabled
+//! tss-rust = "0.2"
+//!
 //! # Everything: all nodes + all metadata
 //! tss-rust = { version = "0.2", features = ["full"] }
 //!
-//! # Just the nodes you need with selected metadata
-//! tss-rust = { version = "0.2", default-features = false, features = [
+//! # Just nodes, no metadata
+//! tss-rust = { version = "0.2", features = ["node_full"] }
+//!
+//! # Just metadata, no nodes
+//! tss-rust = { version = "0.2", features = ["meta_full"] }
+//!
+//! # Specific nodes with selected metadata
+//! tss-rust = { version = "0.2", features = [
 //!     "function_item",
 //!     "struct_item",
 //!     "meta_named"
@@ -89,21 +103,20 @@
 //!
 //! - A `NodeType` enum with variants for all 280+ node types
 //! - `FromStr` implementation for parsing node type strings
-//! - `Display` implementation for converting back to strings
+//! - `Display` implementation for converting back to strings  
 //! - Documentation linking to Rust language reference where applicable
 //! - Feature-gated compilation so you only pay for what you use
 //!
 //! All generation happens at compile time with zero runtime dependencies. The generated code
-//! is feature-gated, so when compiled with `--no-default-features`, the crate adds virtually
-//! no overhead to your binary.
+//! is feature-gated, so with no features enabled, the crate compiles to almost nothing.
 //!
 //! # Design Philosophy
 //!
 //! **Type Safety**: String comparisons are error-prone and not checked at compile time. Using
 //! enum variants catches typos early and enables exhaustive pattern matching.
 //!
-//! **Minimal Overhead**: With careful feature selection, you include only the node types you
-//! actually use. The default features enable only metadata, keeping the baseline small.
+//! **Minimal Overhead**: With no default features, you explicitly choose what to include. Add
+//! only the node types you actually use in your tree-sitter traversals.
 //!
 //! **Build-Time Generation**: By generating at build time rather than using macros, we get
 //! better IDE support, faster compile times, and the ability to inspect generated code.

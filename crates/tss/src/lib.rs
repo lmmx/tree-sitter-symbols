@@ -8,7 +8,7 @@
 //!
 //! ```toml
 //! [dependencies]
-//! tss = { version = "0.2", features = ["lang-rust"] }
+//! tss = { version = "0.2", features = ["lang-rust-full"] }
 //! tree-sitter = "0.24"
 //! tree-sitter-rust = "0.24"
 //! ```
@@ -38,54 +38,79 @@
 //!
 //! # Features
 //!
+//! **By default, this crate has no features enabled and provides no functionality.** You must
+//! explicitly enable the languages you need.
+//!
 //! ## Language Selection
 //!
 //! Enable languages individually or all at once:
 //!
 //! ```toml
-//! # Single language with metadata only
+//! # Single language with metadata only (no node types)
 //! tss = { version = "0.2", features = ["lang-rust"] }
 //!
-//! # All languages (currently just Rust)
+//! # All languages with metadata only (currently just Rust)
 //! tss = { version = "0.2", features = ["lang-all"] }
+//!
+//! # All languages with full node types (currently just Rust)  
+//! tss = { version = "0.2", features = ["lang-all-full"] }
 //! ```
 //!
-//! ## Full vs. Metadata-Only
+//! ## Language Variants: Metadata-Only vs. Full
 //!
 //! Each language has two feature variants:
 //!
-//! - **`lang-{name}`**: Enables the language with only metadata features. The `NodeType` enum
-//!   exists but has no variants unless you also enable node type features directly from the
-//!   underlying language crate.
+//! ### `lang-{name}` - Metadata Only
 //!
-//! - **`lang-{name}-full`**: Enables the language with all node types and all metadata.
+//! Enables the language crate with `meta_full` but **no node types**. The `NodeType` enum
+//! exists but has no variants, making it essentially unusable for pattern matching. This is
+//! useful if you only need the metadata features or plan to enable specific node types manually.
 //!
 //! ```toml
-//! # Metadata only - lightweight, no node type variants
+//! # Rust with metadata only - NodeType enum exists but is empty
 //! tss = { version = "0.2", features = ["lang-rust"] }
+//! ```
 //!
-//! # Full node types + metadata - complete functionality
+//! ### `lang-{name}-full` - Complete Functionality  
+//!
+//! Enables the language crate with the `full` feature, which includes both `meta_full` and
+//! `node_full`. This gives you all node types and all metadata - complete functionality.
+//!
+//! ```toml
+//! # Rust with all node types + all metadata
 //! tss = { version = "0.2", features = ["lang-rust-full"] }
+//! ```
 //!
-//! # All languages with full node types
+//! ### Aggregate Features
+//!
+//! - **`lang-all`**: Enables all languages with metadata only (no node types)
+//! - **`lang-all-full`**: Enables all languages with full functionality (all nodes + metadata)
+//!
+//! ```toml
+//! # All languages, metadata only
+//! tss = { version = "0.2", features = ["lang-all"] }
+//!
+//! # All languages, complete functionality
 //! tss = { version = "0.2", features = ["lang-all-full"] }
 //! ```
 //!
 //! ## Combining with Language Crate Features
 //!
-//! You can enable this convenience crate with selective node types by combining features:
+//! For fine-grained control, enable `tss` with a metadata-only language, then add the underlying
+//! language crate with specific node type features:
 //!
 //! ```toml
 //! [dependencies]
 //! tss = { version = "0.2", features = ["lang-rust"] }
-//! tss-rust = { version = "0.2", default-features = false, features = [
+//! tss-rust = { version = "0.2", features = [
 //!     "function_item",
 //!     "struct_item",
 //!     "impl_item"
 //! ]}
 //! ```
 //!
-//! This gives you `NodeTypeRust` through `tss` with only the specific node types you need.
+//! This gives you `NodeTypeRust` through `tss` with only the specific node types you need,
+//! plus all metadata from the `lang-rust` feature.
 //!
 //! # When to Use This Crate
 //!
@@ -93,11 +118,13 @@
 //! - You're working with multiple tree-sitter languages
 //! - You want a unified import for all language support
 //! - You prefer explicit type names like `NodeTypeRust` vs. `NodeType`
+//! - You want `lang-all` or `lang-all-full` to easily enable all supported languages
 //!
 //! **Use language crates directly** (e.g., `tss-rust`) when:
 //! - You're only working with a single language
 //! - You want minimal dependencies
 //! - You prefer the simpler `NodeType` name
+//! - You need fine-grained control over individual node type features
 //!
 //! # How It Works
 //!
