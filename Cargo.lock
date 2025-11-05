@@ -163,14 +163,14 @@ dependencies = [
 
 [[package]]
 name = "tss"
-version = "0.1.2"
+version = "0.2.0"
 dependencies = [
  "tss-rust",
 ]
 
 [[package]]
 name = "tss-rust"
-version = "0.1.2"
+version = "0.2.0"
 dependencies = [
  "ropey",
  "serde",
