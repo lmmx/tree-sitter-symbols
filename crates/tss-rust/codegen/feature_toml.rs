@@ -2,6 +2,11 @@ use ropey::Rope;
 use textum::{Boundary, BoundaryMode, Patch, PatchError, Snippet, Target};
 
 pub fn update_cargo_toml_features(feature_names: &[String]) -> Result<(), PatchError> {
+    // Skip feature rewriting unless explicitly enabled
+    if std::env::var("REWRITE_FEATURES").is_err() {
+        return Ok(());
+    }
+
     // Use the correct path relative to the crate root
     let cargo_toml_path = std::env::current_dir()
         .map_err(PatchError::IoError)?
