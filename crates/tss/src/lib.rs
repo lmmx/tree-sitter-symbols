@@ -5,6 +5,7 @@ pub use tree_sitter_symbols_rust;
 #[cfg(feature = "lang-rust")]
 pub use tree_sitter_symbols_rust::NodeType as NodeTypeRust;
 
+#[cfg(feature = "lang-rust-full")]
 #[cfg(test)]
 mod tests {
     #[cfg(feature = "lang-rust")]

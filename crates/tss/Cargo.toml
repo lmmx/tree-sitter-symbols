@@ -23,9 +23,11 @@ path = "src/lib.rs"
 # Convenience features
 default = ["lang-all"]
 lang-all = ["lang-rust"]
+lang-all-full = ["lang-rust-full"]
 
 # Language features
 lang-rust = ["dep:tss-rust"]
+lang-rust-full = ["lang-rust", "tss-rust/full"]
 
 [lints.clippy]
 all = "deny"
