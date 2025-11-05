@@ -20,7 +20,7 @@ path = "src/lib.rs"
 
 [features]
 # Convenience features
-default = ["meta_full"]
+default = []
 
 meta = [] # Tracking feature: activated by all meta_* features
 node = [] # Tracking feature: activated by all node type features
