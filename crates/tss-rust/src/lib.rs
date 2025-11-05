@@ -2,6 +2,7 @@
 #![allow(clippy::redundant_feature_names)]
 include!(concat!(env!("OUT_DIR"), "/generated.rs"));
 
+#[cfg(any(feature = "function_item", feature = "node_full"))]
 #[cfg(test)]
 mod tests {
     use super::*;

@@ -1,10 +1,19 @@
 #![allow(clippy::negative_feature_names)]
 #![allow(clippy::redundant_feature_names)]
-use std::str::FromStr;
-use tree_sitter_symbols_rust::NodeType;
 
+#[cfg(any(
+    feature = "function_item",
+    feature = "struct_item",
+    feature = "impl_item",
+    feature = "mod_item",
+    feature = "block",
+    feature = "identifier",
+    feature = "node_full"
+))]
 #[test]
 fn enum_variants_exist() {
+    use tree_sitter_symbols_rust::NodeType;
+
     // Check some common node types exist as variants
     #[cfg(any(feature = "function_item", feature = "node_full"))]
     let _ = NodeType::FunctionItem;
@@ -20,8 +29,17 @@ fn enum_variants_exist() {
     let _ = NodeType::Identifier;
 }
 
+#[cfg(any(
+    feature = "function_item",
+    feature = "struct_item",
+    feature = "impl_item",
+    feature = "node_full"
+))]
 #[test]
 fn from_str_works() {
+    use tree_sitter_symbols_rust::NodeType;
+    use std::str::FromStr;
+
     #[cfg(any(feature = "function_item", feature = "node_full"))]
     assert_eq!(
         NodeType::from_str("function_item").unwrap(),
@@ -40,11 +58,22 @@ fn from_str_works() {
 #[cfg(feature = "node")]
 #[test]
 fn from_str_rejects_unknown() {
+    use tree_sitter_symbols_rust::NodeType;
+    use std::str::FromStr;
+
     assert!(NodeType::from_str("not_a_real_node_type").is_err());
 }
 
+#[cfg(any(
+    feature = "function_item",
+    feature = "struct_item",
+    feature = "impl_item",
+    feature = "node_full"
+))]
 #[test]
 fn display_works() {
+    use tree_sitter_symbols_rust::NodeType;
+
     #[cfg(any(feature = "function_item", feature = "node_full"))]
     assert_eq!(NodeType::FunctionItem.to_string(), "function_item");
     #[cfg(any(feature = "struct_item", feature = "node_full"))]
@@ -56,6 +85,9 @@ fn display_works() {
 #[cfg(any(feature = "function_item", feature = "node_full"))]
 #[test]
 fn roundtrip() {
+    use tree_sitter_symbols_rust::NodeType;
+    use std::str::FromStr;
+
     let original = "function_item";
     let parsed = NodeType::from_str(original).unwrap();
     let displayed = parsed.to_string();
