@@ -241,11 +241,17 @@ fn generate_display<W: Write>(
             f,
             "            #[cfg(any(feature = \"{feat_name}\", feature = \"all_node_types\"))]"
         )?;
+
+        // Escape special characters for Rust string literals in generated code
+        let escaped = original
+            .replace('\\', r"\\") // backslash first!
+            .replace('"', r#"\""#) // escape double quotes
+            .replace('{', "{{") // escape opening brace for format strings
+            .replace('}', "}}"); // escape closing brace for format strings
+
         writeln!(
             f,
-            "            Self::{} => write!(f, \"{}\"),",
-            variant_name,
-            original.replace('{', "{{").replace('}', "}}")
+            "            Self::{variant_name} => write!(f, \"{escaped}\"),"
         )?;
     }
 
