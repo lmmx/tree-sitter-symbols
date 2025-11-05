@@ -28,7 +28,7 @@
 //!
 //! # Language-Specific Type Names
 //!
-//! Each language's `NodeType` is re-exported with the language name in PascalCase:
+//! Each language's `NodeType` is re-exported with the language name in `PascalCase`:
 //!
 //! - **Rust**: `tree_sitter_symbols_rust::NodeType` → `NodeTypeRust`
 //! - **Python** (future): `tree_sitter_symbols_python::NodeType` → `NodeTypePython`

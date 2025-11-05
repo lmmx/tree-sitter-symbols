@@ -1,3 +1,5 @@
+//! Smoke test to verify the crate compiles.
+
 #![allow(clippy::negative_feature_names)]
 #![allow(clippy::redundant_feature_names)]
 

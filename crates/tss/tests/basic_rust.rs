@@ -1,3 +1,5 @@
+//! Basic integration tests for Rust language support.
+
 #![allow(clippy::negative_feature_names)]
 #![allow(clippy::redundant_feature_names)]
 #![cfg(feature = "lang-rust")]

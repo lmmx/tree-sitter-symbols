@@ -1,3 +1,5 @@
+//! Basic integration tests for the `NodeType` enum.
+
 #![allow(clippy::negative_feature_names)]
 #![allow(clippy::redundant_feature_names)]
 
