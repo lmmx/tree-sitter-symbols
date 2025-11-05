@@ -37,8 +37,8 @@ fn enum_variants_exist() {
 ))]
 #[test]
 fn from_str_works() {
-    use tree_sitter_symbols_rust::NodeType;
     use std::str::FromStr;
+    use tree_sitter_symbols_rust::NodeType;
 
     #[cfg(any(feature = "function_item", feature = "node_full"))]
     assert_eq!(
@@ -58,8 +58,8 @@ fn from_str_works() {
 #[cfg(feature = "node")]
 #[test]
 fn from_str_rejects_unknown() {
-    use tree_sitter_symbols_rust::NodeType;
     use std::str::FromStr;
+    use tree_sitter_symbols_rust::NodeType;
 
     assert!(NodeType::from_str("not_a_real_node_type").is_err());
 }
@@ -85,8 +85,8 @@ fn display_works() {
 #[cfg(any(feature = "function_item", feature = "node_full"))]
 #[test]
 fn roundtrip() {
-    use tree_sitter_symbols_rust::NodeType;
     use std::str::FromStr;
+    use tree_sitter_symbols_rust::NodeType;
 
     let original = "function_item";
     let parsed = NodeType::from_str(original).unwrap();

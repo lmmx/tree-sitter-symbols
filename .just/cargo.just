@@ -2,9 +2,11 @@ build:
     cargo build --workspace --all-features
 
 check:
-    # cargo check --workspace --all-features
-    # cargo hack check --workspace --each-feature --no-dev-deps
-    cargo hack check --workspace --feature-powerset --no-dev-deps
+    cargo check --workspace # default features
+    cargo check --workspace --no-default-features
+    cargo check --workspace --all-features
+    cargo hack check --workspace --each-feature --no-dev-deps
+    # cargo hack check --workspace --feature-powerset --no-dev-deps
 
 clippy:
     cargo clippy --workspace --all-targets --all-features --target-dir target/clippy-all-features -- -D warnings
@@ -19,9 +21,11 @@ machete *args:
     cargo machete --with-metadata {{args}}
 
 test *args:
-    # cargo nextest run {{args}} --all-targets --all-features
-    # cargo hack nextest run --workspace --all-targets --each-feature
-    cargo hack nextest run --workspace --all-targets --feature-powerset
+    cargo nextest run {{args}} --all-targets # default features
+    cargo nextest run {{args}} --all-targets --no-default-features
+    cargo nextest run {{args}} --all-targets --all-features
+    cargo hack nextest run --workspace --all-targets --each-feature
+    # cargo hack nextest run --workspace --all-targets --feature-powerset
 
 test-ci *args:
     #!/usr/bin/env -S echo-comment --color bright-green
