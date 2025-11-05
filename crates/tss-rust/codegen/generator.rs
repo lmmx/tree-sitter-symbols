@@ -153,7 +153,7 @@ fn generate_enum<W: Write>(
         // Gate the variant itself on its feature or the global one
         writeln!(
             f,
-            "    #[cfg(any(feature = \"{feat}\", feature = \"all_node_types\"))]"
+            "    #[cfg(any(feature = \"{feat}\", feature = \"node_full\"))]"
         )?;
         writeln!(f, "    {variant_name},")?;
     }
@@ -174,7 +174,7 @@ fn generate_from_str<W: Write>(
         let feat = feature_name(original, node_types[i].named);
         all_feature_list.push(format!("feature = \"{feat}\""));
     }
-    all_feature_list.push("feature = \"all_node_types\"".to_string());
+    all_feature_list.push("feature = \"node_full\"".to_string());
     let any_cfg = format!("any({})", all_feature_list.join(", "));
 
     // gate the whole impl
@@ -191,7 +191,7 @@ fn generate_from_str<W: Write>(
             let feat = feature_name(original, node_types[i].named);
             writeln!(
                 f,
-                "            #[cfg(any(feature = \"{feat}\", feature = \"all_node_types\"))]"
+                "            #[cfg(any(feature = \"{feat}\", feature = \"node_full\"))]"
             )?;
             writeln!(f, "            {original:?} => Ok(Self::{variant_name}),")?;
         }
@@ -220,7 +220,7 @@ fn generate_display<W: Write>(
         let feat_name = feature_name(original, named);
         feats.push(format!("feature = \"{feat_name}\""));
     }
-    feats.push("feature = \"all_node_types\"".to_string());
+    feats.push("feature = \"node_full\"".to_string());
     let any_cfg = format!("any({})", feats.join(", "));
 
     writeln!(f, "#[cfg({any_cfg})]")?;
@@ -239,7 +239,7 @@ fn generate_display<W: Write>(
 
         writeln!(
             f,
-            "            #[cfg(any(feature = \"{feat_name}\", feature = \"all_node_types\"))]"
+            "            #[cfg(any(feature = \"{feat_name}\", feature = \"node_full\"))]"
         )?;
 
         // Escape special characters for Rust string literals in generated code

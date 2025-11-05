@@ -25,7 +25,7 @@ pub fn update_cargo_toml_features(feature_names: &[String]) -> Result<(), PatchE
     // Generate feature lines
     let mut feature_lines = Vec::new();
     for feat in feature_names {
-        feature_lines.push(format!("{feat} = []"));
+        feature_lines.push(format!(r#"{feat} = ["node"]"#));
     }
     let new_features = format!("\n{}\n", feature_lines.join("\n"));
 

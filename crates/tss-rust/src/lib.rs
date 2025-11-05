@@ -7,6 +7,7 @@ mod tests {
     use super::*;
     use std::str::FromStr;
 
+    #[cfg(any(feature = "function_item", feature = "node_full"))]
     #[test]
     fn test_from_str() {
         assert_eq!(
@@ -15,6 +16,7 @@ mod tests {
         );
     }
 
+    #[cfg(any(feature = "function_item", feature = "node_full"))]
     #[test]
     fn test_display() {
         assert_eq!(NodeType::FunctionItem.to_string(), "function_item");
